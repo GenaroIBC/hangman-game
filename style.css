@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #232323;
+  font-family: "Poppins", Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+main {
+  margin: 1rem auto;
+  width: 90%;
+}
+
+input {
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+section {
+  background-color: darkcyan;
+}
+
+.visual {
+  display: flex;
+}
+
+.entry {
+  padding: 1rem;
+}
+
+.visual__draw {
+  width: 60%;
+}
+
+.visual__points {
+  width: 40%;
+}
+
+.entry__form__input {
+  background-color: #232323;
+  text-align: center;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 2rem;
+}
+
+.entry__form__submit-btn {
+  height: 2rem;
+  width: 5rem;
+  margin: 1rem;
+  background-color: #37f;
+  color: #fff;
+}

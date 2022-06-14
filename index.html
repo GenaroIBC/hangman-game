@@ -4,30 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Ahorcado</title>
   </head>
   <body>
     <main>
       <section class="visual">
-        <article class="visual__draw"></article>
-        <article class="visual__points"></article>
+        <article class="visual__draw">Draw Here :)</article>
+        <article class="visual__points">
+          <div>
+            <p>
+              Goods:
+              <span class="visual__points__goods">0</span>
+              Fails:
+              <span class="visual__points__fails">0</span>
+            </p>
+          </div>
+        </article>
       </section>
+      <p>
+        Word: <b><i>JavaScript</i></b>
+      </p>
       <section class="entry">
-        <form>
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <input class="entry__input" type="text" />
-          <br>
-          <input type="submit" value="submit">
+        <form id="word-form" class="entry__form">
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <input maxlength="1" class="entry__form__input" type="text" />
+          <br />
+          <input class="entry__form__submit-btn" type="submit" value="submit" />
         </form>
       </section>
     </main>
+    <script src="app.js"></script>
   </body>
 </html>
