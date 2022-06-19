@@ -8,40 +8,60 @@
     <title>Ahorcado</title>
   </head>
   <body>
+    <dialog>
+      <button id="close-dialog">Close</button>
+      <p>Hello world</p>
+    </dialog>
+    <button id="open-dialog">Open modal</button>
+    <script>
+      console.log(document.querySelector("dialog"));
+      document.addEventListener("click", (e) => {
+        if (e.target.matches("button#close-dialog"))
+          document.querySelector("dialog").close();
+        else if (e.target.matches("button#open-dialog"))
+          document.querySelector("dialog").showModal();
+      });
+    </script>
     <main>
       <section class="visual">
-        <article class="visual__draw">Draw Here :)</article>
-        <article class="visual__points">
-          <div>
-            <p>
-              Goods:
-              <span class="visual__points__goods">0</span>
-              Fails:
-              <span class="visual__points__fails">0</span>
-            </p>
-          </div>
+        <article class="visual__draw">
+          <canvas width="300" height="200" id="canvas"></canvas>
+        </article>
+        <article class="visual__word">
+          
+          <div><p class="visual__word__pgph">incorrect letters:</p><p id="incorrect-letter-pgph"></p></div>
+          <form id="word-form" class="entry__form"></form>
         </article>
       </section>
-      <p>
-        Word: <b><i>JavaScript</i></b>
-      </p>
-      <section class="entry">
-        <form id="word-form" class="entry__form">
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <input maxlength="1" class="entry__form__input" type="text" />
-          <br />
-          <input class="entry__form__submit-btn" type="submit" value="submit" />
+      <br />
+      <section class="input-section">
+        <form id="letter-form">
+          <input
+            name="letter"
+            autofocus
+            maxlength="1"
+            required
+            class="entry__form__input incorrect-input"
+            type="text"
+          />
         </form>
       </section>
+      <p style="display: none">
+        Word: <b><i id="word-pgph"></i></b>
+      </p>
     </main>
+    <template id="input-template">
+      <input
+        readonly
+        maxlength="1"
+        required
+        class="entry__form__input incorrect-input"
+        type="text"
+      />
+    </template>
+    <template id="incorrect-letter-template">
+      <div class="incorrect-letter-box"></div>
+    </template>
     <script src="app.js"></script>
   </body>
 </html>
