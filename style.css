@@ -29,7 +29,7 @@ button {
 
 canvas {
   width: 45%;
-  background-color: #045;
+  background-color: #6d058d;
 }
 
 .visual {
@@ -79,12 +79,13 @@ canvas {
 }
 
 #status-modal {
+  border: 3px solid #bbb;
   /* padding: 0; */
   font-size: 1.5rem;
   text-align: center;
   width: 50vw;
   min-height: 20vh;
-  background-color: #6d058d;
+  background-color: #000a;
   color: #fff;
   border-radius: 10px;
 }
@@ -95,13 +96,12 @@ canvas {
 
 #play-again-btn {
   background-color: #37f;
+  margin-top: 1rem;
   padding: 1rem 2rem;
   border-radius: 5px;
   font-size: 1.5rem;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   color: #fff;
-  /* border: none; */
-  /* color:#fff; */
 }
 
 .word-sect__pgph {
@@ -112,7 +112,7 @@ canvas {
 .container {
   margin: auto;
   width: 45%;
-  background-color: #0006;
+  background-color: #121212;
 }
 
 @media (max-width: 1000px) {
@@ -127,4 +127,10 @@ canvas {
   .container {
     width: 100%;
   }
+}
+
+
+.foot {
+  background-color: #454545;
+  padding: 1rem;
 }
