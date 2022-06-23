@@ -8,47 +8,35 @@
     <title>Ahorcado</title>
   </head>
   <body>
-    <dialog>
-      <button id="close-dialog">Close</button>
-      <p>Hello world</p>
+    <dialog id="status-modal">
+      <p id="status-modal-pgph">Hello world</p>
+      <button id="play-again-btn">Play again</button>
     </dialog>
-    <button id="open-dialog">Open modal</button>
-    <script>
-      console.log(document.querySelector("dialog"));
-      document.addEventListener("click", (e) => {
-        if (e.target.matches("button#close-dialog"))
-          document.querySelector("dialog").close();
-        else if (e.target.matches("button#open-dialog"))
-          document.querySelector("dialog").showModal();
-      });
-    </script>
     <main>
       <section class="visual">
-        <article class="visual__draw">
-          <canvas width="300" height="200" id="canvas"></canvas>
-        </article>
-        <article class="visual__word">
-          
-          <div><p class="visual__word__pgph">incorrect letters:</p><p id="incorrect-letter-pgph"></p></div>
+        <canvas width="300" height="200" id="canvas"></canvas>
+      </section>
+      <div class="container">
+        <article class="word-sect">
+          <p class="word-sect__pgph">INCORRECT LETTERS:</p>
+          <p id="incorrect-letters-pgph"></p>
           <form id="word-form" class="entry__form"></form>
         </article>
-      </section>
-      <br />
-      <section class="input-section">
-        <form id="letter-form">
-          <input
-            name="letter"
-            autofocus
-            maxlength="1"
-            required
-            class="entry__form__input incorrect-input"
-            type="text"
-          />
-        </form>
-      </section>
-      <p style="display: none">
-        Word: <b><i id="word-pgph"></i></b>
-      </p>
+        <br />
+        <section class="input-section">
+          <form id="letter-form">
+            <input
+              pattern="[a-zA-Z]+"
+              name="letter"
+              autofocus
+              maxlength="1"
+              required
+              class="entry__form__input incorrect-input"
+              type="text"
+            />
+          </form>
+        </section>
+      </div>
     </main>
     <template id="input-template">
       <input

@@ -1,15 +1,14 @@
-// const $INCORRECT_WORD_TEMPLATE = $("#incorrect-letter-template").content;
-// const $INCORRECT_LETTERS_SECT = $(".visual__incorrect-words");
-// const $FAILED_POINTS = $(".visual__points__fails");
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 const randomNum = (max, min) => Math.round(Math.random() * (max - min) + min);
-const $INCORRECT_LETTER_PGPH = $("#incorrect-letter-pgph");
+const $INCORRECT_LETTERS_PGPH = $("#incorrect-letters-pgph");
 const $WORD_PGPH = $("#word-pgph");
 const $INPUT_TEMPLATE = $("#input-template").content;
 const $FORM = $("#letter-form");
 const $WORD_SECTION = $("#word-form");
 const $FRAGMENT = document.createDocumentFragment();
+const $STATUS_MODAL = $("#status-modal")
+const $STATUS_MODAL_PGPH = $("#status-modal-pgph")
 const WORDS_ARRAY = [
   "ARGENTINA",
   "CHILE",
@@ -25,23 +24,32 @@ const WORDS_ARRAY = [
   "PANAMA",
   "SALVADOR",
 ];
-// const SELECTED_WORD =
-//   WORDS_ARRAY[Math.floor(Math.random() * WORDS_ARRAY.length)];
-// $WORD_PGPH.textContent = SELECTED_WORD;
-
 let SELECTED_WORD;
 
-fetch("https://palabras-aleatorias-public-api.herokuapp.com/random")
-  .then((res) => res.json())
-  .then((WORD) => {
-    SELECTED_WORD = WORD.body.Word.toUpperCase();
-    console.log(SELECTED_WORD);
-    for (const LETTER of SELECTED_WORD) {
-      $FRAGMENT.appendChild($INPUT_TEMPLATE.cloneNode(true));
-    }
-    $WORD_SECTION.appendChild($FRAGMENT);
-  });
+if (navigator.onLine) {
+  // with internet connection
+  fetch("https://palabras-aleatorias-public-api.herokuapp.com/random")
+    .then((res) => res.json())
+    .then((WORD) => {
+      SELECTED_WORD = WORD.body.Word.toUpperCase();
+      for (const LETTER of SELECTED_WORD) {
+        $FRAGMENT.appendChild($INPUT_TEMPLATE.cloneNode(true));
+      }
+      $WORD_SECTION.appendChild($FRAGMENT);
+    });
+} else {
+  // without internet connection
+  SELECTED_WORD = WORDS_ARRAY[Math.floor(Math.random() * WORDS_ARRAY.length)];
 
+  for (const LETTER of SELECTED_WORD) {
+    $FRAGMENT.appendChild($INPUT_TEMPLATE.cloneNode(true));
+  }
+  $WORD_SECTION.appendChild($FRAGMENT);
+}
+
+document.addEventListener("click", (e)=> {
+  if(e.target.matches("#play-again-btn")) location.reload()
+})
 const $CANVAS = $("#canvas").getContext("2d");
 // STRUCTURE
 $CANVAS.beginPath();
@@ -119,7 +127,7 @@ function drawCanvas(error, color) {
 $FORM.addEventListener("submit", mainFunction);
 
 function renderIncorrectLetter(letter) {
-  $INCORRECT_LETTER_PGPH.innerHTML += `<s>${letter}</s>\n`;
+  $INCORRECT_LETTERS_PGPH.innerHTML += `<s>${letter}</s>\n`;
 }
 
 const INCORRECT_LETTERS = [];
@@ -152,9 +160,24 @@ function mainFunction(e) {
   if (
     Array.from($INPUTS).reduce((word, $input) => word + $input.value, "") ===
     SELECTED_WORD
-  )
-    document.write("ganaste :("); //userWins()
+  ) showModal(true)
 
   console.log({ errorsCount });
-  if (errorsCount === 7) document.write("perdiste :("); //userLoses()
+  if (errorsCount === 7) showModal(false)
 }
+
+
+function showModal(user_wins) {
+  let message;
+  if (user_wins) {
+    message = "You win!"
+  } else {
+    message = "You lose :("
+    const $CORRECT_WORD = document.createElement("p")
+    $CORRECT_WORD.textContent = `The correct word was ${SELECTED_WORD}`
+    $STATUS_MODAL_PGPH.insertAdjacentElement("afterend", $CORRECT_WORD)
+  }
+  $STATUS_MODAL_PGPH.textContent = message
+  $STATUS_MODAL.showModal();
+}
+// $STATUS_MODAL.showModal();
