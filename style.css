@@ -3,6 +3,10 @@
 }
 
 body {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  justify-content: space-between;
   background-color: #232323;
   font-family: "Poppins", Arial, sans-serif;
   color: #fff;
@@ -12,6 +16,7 @@ body {
 main {
   margin: 1rem auto;
   width: 90%;
+  flex-grow: 1;
 }
 
 input {
@@ -28,6 +33,7 @@ button {
 }
 
 canvas {
+  border-radius: 25px 25px 0 0;
   width: 45%;
   background-color: #6d058d;
 }
@@ -43,6 +49,7 @@ canvas {
   flex-flow: column nowrap;
   justify-content: space-between;
 }
+
 .entry__form__input {
   background-color: #232323;
   text-align: center;
@@ -83,20 +90,19 @@ canvas {
   /* padding: 0; */
   font-size: 1.5rem;
   text-align: center;
-  width: 50vw;
+  width: 30vw;
   min-height: 20vh;
-  background-color: #000a;
-  color: #fff;
+  background-color: hsl(290, 53%, 16%);
+  color: #FFF;
   border-radius: 10px;
 }
 
 #status-modal-pgph {
-  margin: 0;
+  /* margin: 0; */
 }
 
 #play-again-btn {
-  background-color: #37f;
-  margin-top: 1rem;
+  background-color: hsl(317, 100%, 31%);
   padding: 1rem 2rem;
   border-radius: 5px;
   font-size: 1.5rem;
@@ -110,6 +116,8 @@ canvas {
 }
 
 .container {
+  padding: 1rem 0;
+  border-radius: 0 0 25px 25px;
   margin: auto;
   width: 45%;
   background-color: #121212;
@@ -127,10 +135,26 @@ canvas {
   .container {
     width: 100%;
   }
+
+  #status-modal {
+    width: 50vw;
+  }
 }
 
 
 .foot {
+  margin-bottom: 1rem;
   background-color: #454545;
   padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.letter-input {
+  width: 3rem;   
+  height: 3rem;
+  font-size: 2rem;   
+}
+
+.word-sect__pgph {
+  display: none;
 }

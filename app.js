@@ -2,13 +2,12 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 const randomNum = (max, min) => Math.round(Math.random() * (max - min) + min);
 const $INCORRECT_LETTERS_PGPH = $("#incorrect-letters-pgph");
-const $WORD_PGPH = $("#word-pgph");
 const $INPUT_TEMPLATE = $("#input-template").content;
 const $FORM = $("#letter-form");
 const $WORD_SECTION = $("#word-form");
 const $FRAGMENT = document.createDocumentFragment();
-const $STATUS_MODAL = $("#status-modal")
-const $STATUS_MODAL_PGPH = $("#status-modal-pgph")
+const $STATUS_MODAL = $("#status-modal");
+const $STATUS_MODAL_PGPH = $("#status-modal-pgph");
 const WORDS_ARRAY = [
   "ARGENTINA",
   "CHILE",
@@ -47,9 +46,9 @@ if (navigator.onLine) {
   $WORD_SECTION.appendChild($FRAGMENT);
 }
 
-document.addEventListener("click", (e)=> {
-  if(e.target.matches("#play-again-btn")) location.reload()
-})
+document.addEventListener("click", (e) => {
+  if (e.target.matches("#play-again-btn")) location.reload();
+});
 const $CANVAS = $("#canvas").getContext("2d");
 // STRUCTURE
 $CANVAS.beginPath();
@@ -127,6 +126,7 @@ function drawCanvas(error, color) {
 $FORM.addEventListener("submit", mainFunction);
 
 function renderIncorrectLetter(letter) {
+  $(".word-sect__pgph").style.display = "block"
   $INCORRECT_LETTERS_PGPH.innerHTML += `<s>${letter}</s>\n`;
 }
 
@@ -147,37 +147,34 @@ function mainFunction(e) {
         $INPUTS[i].classList.remove("incorrect-input");
       }
     }
-  } else {
-    if (!INCORRECT_LETTERS.includes(LETTER)) {
-      INCORRECT_LETTERS.push(LETTER);
-      errorsCount++;
-      drawCanvas(errorsCount, "black");
-      renderIncorrectLetter(LETTER);
-    }
+  } else if (!INCORRECT_LETTERS.includes(LETTER)) {
+    INCORRECT_LETTERS.push(LETTER);
+    errorsCount++;
+    drawCanvas(errorsCount, "black");
+    renderIncorrectLetter(LETTER);
   }
   // and finaly
   $FORM.letter.value = "";
   if (
     Array.from($INPUTS).reduce((word, $input) => word + $input.value, "") ===
     SELECTED_WORD
-  ) showModal(true)
+  )
+    showModal(true);
 
-  console.log({ errorsCount });
-  if (errorsCount === 7) showModal(false)
+  if (errorsCount === 7) showModal(false);
 }
-
 
 function showModal(user_wins) {
   let message;
   if (user_wins) {
-    message = "You win!"
+    message = "You win!";
   } else {
-    message = "You lose :("
-    const $CORRECT_WORD = document.createElement("p")
-    $CORRECT_WORD.textContent = `The correct word was ${SELECTED_WORD}`
-    $STATUS_MODAL_PGPH.insertAdjacentElement("afterend", $CORRECT_WORD)
+    message = "You lose :(";
+    const $CORRECT_WORD = document.createElement("p");
+    $CORRECT_WORD.textContent = `The correct word was ${SELECTED_WORD}`;
+    $STATUS_MODAL_PGPH.insertAdjacentElement("afterend", $CORRECT_WORD);
   }
-  $STATUS_MODAL_PGPH.textContent = message
+  $STATUS_MODAL_PGPH.textContent = message;
   $STATUS_MODAL.showModal();
 }
 // $STATUS_MODAL.showModal();
